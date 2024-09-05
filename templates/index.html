@@ -16,6 +16,14 @@
             color: #333;
         }
 
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 600px;
+        }
+
         h1 {
             font-size: 42px;
             color: #fff;
@@ -31,22 +39,25 @@
             padding: 40px;
             border-radius: 15px;
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-            max-width: 450px;
+            max-width: 100%;
             width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         label {
             font-size: 18px;
             font-weight: 600;
             color: #444;
-            display: block;
             margin-bottom: 10px;
+            width: 100%;
         }
 
         select {
             width: 100%;
             padding: 12px;
-            margin: 15px 0;
+            margin-bottom: 20px;
             font-size: 16px;
             border: none;
             border-radius: 8px;
@@ -93,6 +104,7 @@
             border-radius: 8px;
             box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
             color: #444;
+            width: 100%;
         }
 
         .result-container p {
@@ -103,31 +115,33 @@
     </style>
 </head>
 <body>
-<h1>Team Vs Team</h1>
-<form action="/teamvteam" method="get">
-    <label>Select Team 1</label>
-    <select name="team1">
-        {% for item in teams %}
-            <option>{{item}}</option>
-        {% endfor %}
-    </select>
+    <div class="container">
+        <h1>Team Vs Team</h1>
+        <form action="/teamvteam" method="get">
+            <label>Select Team 1</label>
+            <select name="team1">
+                {% for item in teams %}
+                    <option>{{item}}</option>
+                {% endfor %}
+            </select>
 
-    <label>Select Team 2</label>
-    <select name="team2">
-        {% for item in teams %}
-            <option>{{item}}</option>
-        {% endfor %}
-    </select>
+            <label>Select Team 2</label>
+            <select name="team2">
+                {% for item in teams %}
+                    <option>{{item}}</option>
+                {% endfor %}
+            </select>
 
-    <input type="submit" value="Find Track Record">
-</form>
+            <input type="submit" value="Find Track Record">
+        </form>
 
-{% if result %}
-    <div class="result-container">
-        {% for i in result %}
-            <p>{{i}} : {{result[i]}}</p>
-        {% endfor %}
+        {% if result %}
+        <div class="result-container">
+            {% for i in result %}
+                <p>{{i}} : {{result[i]}}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
     </div>
-{% endif %}
 </body>
 </html>
